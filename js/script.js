@@ -23,11 +23,11 @@ const projetos = [
         tecnologias: ["HTML", "CSS", "JavaScript"],
         linkGithub: "https://github.com/emanuelmartinslima/Projeto-Educahost",
         linkDemo: "https://projeto-educahost.vercel.app/",
-        imagem: imgPlaceholder("Educahost"),
+        imagem: "assets/projects/educahostcapa.png",
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/educahost1.png",
+            "assets/projects/educahost2.png",
+            "assets/projects/educahost3.png"
         ],
         participacao: "Trabalhei na parte do backend, implementando a lógica de negócio, integração de dados e suporte às funcionalidades dos jogos.",
         tecnologiasUtilizadas: ["HTML5", "CSS3", "JavaScript Vanilla", "Node.js", "Vercel para deploy"]
@@ -57,7 +57,7 @@ const projetos = [
         tecnologias: ["Node.js", "React", "MongoDB", "CSS", "HTML"],
         linkGithub: "https://github.com/littlerichard01/EcoBalance",
         linkDemo: "",
-        imagem: imgPlaceholder("EcoBalance Web"),
+        imagem: "assets/projects/ecobalancecapa.png",
         screenshots: [
             imgPlaceholder("Screenshot 1"),
             imgPlaceholder("Screenshot 2"),
@@ -74,11 +74,11 @@ const projetos = [
         tecnologias: ["Node.js", "React", "MongoDB", "CSS", "HTML"],
         linkGithub: "https://github.com/Lucas-Gatto/Questoes-e-Masmorras",
         linkDemo: "https://questoes-e-masmorras-v2.vercel.app/",
-        imagem: imgPlaceholder("Questões & Masmorras"),
+        imagem: "assets/projects/questoesemasmorrascapa.png",
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/questoesemasmorras1.png",
+            "assets/projects/questoesemasmorras2.png",
+            "assets/projects/questoesemasmorras3.png"
         ],
         participacao: "Trabalhei no backend, no banco de dados MongoDB, criei a logo e identidade visual do projeto, além de ter feito o deploy.",
         tecnologiasUtilizadas: ["React", "Node.js + Express", "MongoDB", "CSS3", "Identidade visual", "Vercel deploy"]
@@ -94,9 +94,9 @@ const projetos = [
         linkVideo: "https://www.youtube.com/watch?v=vvucoLBNrB8",
         imagem: imgPlaceholder("EcoBalance Mobile"),
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/ecobalancemobile1.png",
+            "assets/projects/ecobalancemobile2.png",
+            "assets/projects/ecobalancemobile3.png"
         ],
         participacao: "Trabalhei no backend, no banco de dados e na geração do APK para distribuição do aplicativo Android.",
         tecnologiasUtilizadas: ["React Native", "Node.js + Express", "MongoDB", "Android SDK", "Geração de APK release"]
@@ -122,13 +122,17 @@ const projetos = [
         id: 7,
         nome: "Oligarquia Pestilenta",
         descricao: "Sistema de RPG de mesa medieval totalmente autoral, em desenvolvimento desde 2022. Contempla mecânicas próprias, classes, raças, equipamentos e cenário detalhado em livro PDF.",
-        resumo: "Sistema autoral de RPG de mesa medieval (desde 2022, em dev).",
+        resumo: "Sistema autoral de RPG de mesa medieval (desde 2022, em desenvolvimento).",
         tecnologias: ["Autoral", "Diagramação", "Escrita Criativa"],
         linkGithub: "",
         linkDemo: "",
         imagem: "assets/projects/oligarcas sem titulo.png",
         screenshots: [],
-        downloadPdf: "assets/documents/oligarquia-pestilenta-rpg-v2.0.0.pre-17.pdf",
+        pdfs: [
+            { label: "v2.0.0 (Pré-release 17) — Versão mais recente", caminho: "assets/documents/oligarquia-pestilenta-rpg-v2.0.0.pre-17.pdf", destaque: true },
+            { label: "Livro do Jogador v1.7.1", caminho: "assets/documents/op-livro-do-jogador-v1.7.1.pdf", destaque: false },
+            { label: "v0.10.1 — Versão antiga", caminho: "assets/documents/oligarquia-pestilenta-rpg-v0.10.1.pdf", destaque: false }
+        ],
         participacao: "Criação completa do sistema: escrita de lore e regras, edição, diagramação do livro em PDF, desenvolvimento das mecânicas e algumas artes.",
         tecnologiasUtilizadas: ["Escrita criativa e lore", "Design de mecânicas RPG", "Diagramação de PDF", "Criação de artes", "Balanceamento de sistema"]
     },
@@ -141,11 +145,11 @@ const projetos = [
         linkGithub: "",
         linkDemo: "",
         linkVideo: "https://www.youtube.com/watch?v=Fr0dWP_d2nQ&t=2s",
-        imagem: imgPlaceholder("Bylunnar & Tryoria"),
+        imagem: "assets/projects/bylunnarcapa.png",
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/bylunnar1.png",
+            "assets/projects/bylunnar2.png",
+            "assets/projects/bylunnar3.png"
         ],
         participacao: "Atuei na programação do jogo (GML) e na criação de algumas artes (poucas), com foco maior em código.",
         tecnologiasUtilizadas: ["GameMaker Studio", "GameMaker Language (GML)", "Sistema de combate", "Sistema de upgrades", "Pixel art básica"]
@@ -211,10 +215,8 @@ function abrirModalProjeto(id) {
     if (projeto.linkVideo) {
         linksHtml.push(`<a href="${projeto.linkVideo}" target="_blank" rel="noopener noreferrer" class="modal-link-btn video"><i class="fab fa-youtube"></i> Assistir Vídeo</a>`);
     }
-    if (projeto.downloadPdf) {
-        linksHtml.push(`<a href="${projeto.downloadPdf}" download class="modal-link-btn primary" style="background: var(--cor-secondary);"><i class="fas fa-file-pdf"></i> Baixar Livro PDF</a>`);
-    }
-    if (!projeto.linkGithub && !projeto.linkDemo && !projeto.downloadPdf && !projeto.linkVideo) {
+    const temQualquerLink = projeto.linkGithub || projeto.linkDemo || projeto.linkVideo || projeto.downloadPdf || (projeto.pdfs && Array.isArray(projeto.pdfs) && projeto.pdfs.length > 0);
+    if (!temQualquerLink) {
         linksHtml.push(`<span style="font-size: 0.9rem; color: var(--cor-text-light); font-style: italic;">Projeto sem links publicados.</span>`);
     }
 
@@ -227,13 +229,24 @@ function abrirModalProjeto(id) {
                     ${projeto.screenshots.map(src => `<img src="${src}" alt="Screenshot do projeto" loading="lazy">`).join('')}
                 </div>
             </div>`;
+    } else if (projeto.pdfs && Array.isArray(projeto.pdfs) && projeto.pdfs.length > 0) {
+        sectionScreenshots = `
+            <div class="modal-section">
+                <h3><i class="fas fa-file-pdf"></i> Arquivos do Projeto</h3>
+                <p>Baixe o livro completo do sistema de RPG em PDF — escolha uma das versões disponíveis:</p>
+                ${projeto.pdfs.map(pdf => `
+                    <div style="margin-top: 1rem;">
+                        <a href="${pdf.caminho}" download class="modal-link-btn primary" style="background: ${pdf.destaque ? 'var(--cor-secondary)' : 'var(--cor-tertiary)'};"><i class="fas fa-download"></i> Baixar ${pdf.label}</a>
+                    </div>
+                `).join('')}
+            </div>`;
     } else if (projeto.downloadPdf) {
         sectionScreenshots = `
             <div class="modal-section">
                 <h3><i class="fas fa-file-pdf"></i> Arquivo do Projeto</h3>
                 <p>Baixe o livro completo do sistema de RPG em PDF abaixo.</p>
                 <div style="margin-top: 1rem;">
-                    <a href="${projeto.downloadPdf}" download class="modal-link-btn primary" style="background: var(--cor-secondary);"><i class="fas fa-download"></i> Baixar oligarquia-pestilenta-rpg-v2.0.0.pre-17.pdf</a>
+                    <a href="${projeto.downloadPdf}" download class="modal-link-btn primary" style="background: var(--cor-secondary);"><i class="fas fa-download"></i> Baixar PDF</a>
                 </div>
             </div>`;
     }
@@ -291,8 +304,11 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
         fecharModal();
     }
-    if (e.key === 'Escape' && galeriaModal.classList.contains('active')) {
+    if (e.key === 'Escape' && galeriaModal && galeriaModal.classList.contains('active')) {
         fecharGaleriaModal();
+    }
+    if (e.key === 'Escape' && screenshotLightbox && screenshotLightbox.classList.contains('active')) {
+        fecharScreenshotLightbox();
     }
 });
 /* #endregion */
@@ -349,6 +365,38 @@ galeriaItems.forEach((item, idx) => {
 if (galeriaModal) {
     galeriaModal.querySelectorAll('[data-close-modal]').forEach(el => {
         el.addEventListener('click', fecharGaleriaModal);
+    });
+}
+/* #endregion */
+
+/* #region Lightbox de Screenshots */
+const screenshotLightbox = document.getElementById('screenshotLightbox');
+const screenshotLightboxImg = document.getElementById('screenshotLightboxImg');
+
+function abrirScreenshotLightbox(src, alt) {
+    if (!screenshotLightboxImg || !screenshotLightbox) return;
+    screenshotLightboxImg.src = src;
+    screenshotLightboxImg.alt = alt || 'Screenshot do projeto';
+    screenshotLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharScreenshotLightbox() {
+    if (!screenshotLightbox) return;
+    screenshotLightbox.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+document.addEventListener('click', (e) => {
+    const img = e.target.closest('.modal-screenshots img');
+    if (img) {
+        abrirScreenshotLightbox(img.currentSrc || img.src, img.alt);
+    }
+});
+
+if (screenshotLightbox) {
+    screenshotLightbox.querySelectorAll('[data-screenshot-close]').forEach(el => {
+        el.addEventListener('click', fecharScreenshotLightbox);
     });
 }
 /* #endregion */

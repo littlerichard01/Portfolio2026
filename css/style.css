@@ -808,12 +808,13 @@ ul {
     border-radius: var(--radius-sm);
     border: 2px solid var(--cor-border);
     transition: var(--transition);
-    cursor: pointer;
+    cursor: zoom-in;
 }
 
 .modal-screenshots img:hover {
     border-color: var(--cor-primary);
     transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(224, 77, 0, 0.2);
 }
 /* #endregion */
 
@@ -827,13 +828,19 @@ ul {
     box-shadow: none;
     border-radius: 0;
     animation: modalSlideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
 }
 
 .galeria-modal .modal-close {
-    top: -3.5rem;
-    right: 0;
-    background: var(--cor-light);
+    position: absolute;
+    top: 0.65rem;
+    right: 0.65rem;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.92);
     color: var(--cor-dark);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .galeria-modal .modal-close:hover {
