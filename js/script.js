@@ -40,11 +40,11 @@ const projetos = [
         tecnologias: ["Handlebars", "MySQL", "Node.js", "CSS"],
         linkGithub: "https://github.com/emanuelmartinslima/ProjetoPI2-Sagrado-Sistema",
         linkDemo: "",
-        imagem: imgPlaceholder("Sagrado-Sistema"),
+        imagem: "assets/projects/sagradosistemacapa.png",
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/sagradosistema1.png",
+            "assets/projects/sagradosistema2.png",
+            "assets/projects/sagradosistema3.png"
         ],
         participacao: "Trabalhei no backend, construindo APIs, rotas, regras de negócio para contratos e toda integração com banco de dados MySQL.",
         tecnologiasUtilizadas: ["Node.js + Express", "Handlebars", "MySQL", "CSS3", "Arquitetura MVC"]
@@ -59,9 +59,9 @@ const projetos = [
         linkDemo: "",
         imagem: "assets/projects/ecobalancecapa.png",
         screenshots: [
-            imgPlaceholder("Screenshot 1"),
-            imgPlaceholder("Screenshot 2"),
-            imgPlaceholder("Screenshot 3")
+            "assets/projects/ecobalance1.png",
+            "assets/projects/ecobalance2.png",
+            "assets/projects/ecobalance3.png"
         ],
         participacao: "Trabalhei no backend, no banco de dados MongoDB, no deploy da aplicação e também criei a logo do projeto.",
         tecnologiasUtilizadas: ["React", "Node.js + Express", "MongoDB + Mongoose", "CSS3", "Deploy em nuvem"]
@@ -92,7 +92,7 @@ const projetos = [
         linkGithub: "https://github.com/littlerichard01/EcoBalance-mobile",
         linkDemo: "",
         linkVideo: "https://www.youtube.com/watch?v=vvucoLBNrB8",
-        imagem: imgPlaceholder("EcoBalance Mobile"),
+        imagem: "assets/projects/ecobalancecapa.png",
         screenshots: [
             "assets/projects/ecobalancemobile1.png",
             "assets/projects/ecobalancemobile2.png",
