@@ -151,6 +151,9 @@ const projetos = [
             "assets/projects/bylunnar2.png",
             "assets/projects/bylunnar3.png"
         ],
+        videos: [
+            { src: "assets/projects/teaser.mp4", type: "video/mp4", label: "Teaser do jogo" }
+        ],
         participacao: "Atuei na programação do jogo (GML) e na criação de algumas artes (poucas), com foco maior em código.",
         tecnologiasUtilizadas: ["GameMaker Studio", "GameMaker Language (GML)", "Sistema de combate", "Sistema de upgrades", "Pixel art básica"]
     }
@@ -213,24 +216,40 @@ function abrirModalProjeto(id) {
         linksHtml.push(`<a href="${projeto.linkDemo}" target="_blank" rel="noopener noreferrer" class="modal-link-btn secondary"><i class="fas fa-external-link-alt"></i> Acessar Demonstração</a>`);
     }
     if (projeto.linkVideo) {
-        linksHtml.push(`<a href="${projeto.linkVideo}" target="_blank" rel="noopener noreferrer" class="modal-link-btn video"><i class="fab fa-youtube"></i> Assistir Vídeo</a>`);
+        linksHtml.push(`<a href="${projeto.linkVideo}" target="_blank" rel="noopener noreferrer" class="modal-link-btn video"><i class="fab fa-youtube"></i> Assistir Gameplay</a>`);
     }
     const temQualquerLink = projeto.linkGithub || projeto.linkDemo || projeto.linkVideo || projeto.downloadPdf || (projeto.pdfs && Array.isArray(projeto.pdfs) && projeto.pdfs.length > 0);
     if (!temQualquerLink) {
         linksHtml.push(`<span style="font-size: 0.9rem; color: var(--cor-text-light); font-style: italic;">Projeto sem links publicados.</span>`);
     }
 
-    let sectionScreenshots = '';
+    const sectionScreenshotsParts = [];
+
+    if (projeto.videos && Array.isArray(projeto.videos) && projeto.videos.length > 0) {
+        sectionScreenshotsParts.push(`
+            <div class="modal-section">
+                <h3><i class="fas fa-film"></i> Teaser do Projeto</h3>
+                <div class="modal-screenshots">
+                    ${projeto.videos.map(v => `
+                        <video controls preload="metadata" style="width: 100%; border-radius: 6px; display: block;">
+                            <source src="${v.src}" type="${v.type || 'video/mp4'}">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                    `).join('')}
+                </div>
+            </div>`);
+    }
+
     if (projeto.screenshots && projeto.screenshots.length > 0) {
-        sectionScreenshots = `
+        sectionScreenshotsParts.push(`
             <div class="modal-section">
                 <h3><i class="fas fa-images"></i> Screenshots do Projeto</h3>
                 <div class="modal-screenshots">
                     ${projeto.screenshots.map(src => `<img src="${src}" alt="Screenshot do projeto" loading="lazy">`).join('')}
                 </div>
-            </div>`;
+            </div>`);
     } else if (projeto.pdfs && Array.isArray(projeto.pdfs) && projeto.pdfs.length > 0) {
-        sectionScreenshots = `
+        sectionScreenshotsParts.push(`
             <div class="modal-section">
                 <h3><i class="fas fa-file-pdf"></i> Arquivos do Projeto</h3>
                 <p>Baixe o livro completo do sistema de RPG em PDF — escolha uma das versões disponíveis:</p>
@@ -239,17 +258,19 @@ function abrirModalProjeto(id) {
                         <a href="${pdf.caminho}" download class="modal-link-btn primary" style="background: ${pdf.destaque ? 'var(--cor-secondary)' : 'var(--cor-tertiary)'};"><i class="fas fa-download"></i> Baixar ${pdf.label}</a>
                     </div>
                 `).join('')}
-            </div>`;
+            </div>`);
     } else if (projeto.downloadPdf) {
-        sectionScreenshots = `
+        sectionScreenshotsParts.push(`
             <div class="modal-section">
                 <h3><i class="fas fa-file-pdf"></i> Arquivo do Projeto</h3>
                 <p>Baixe o livro completo do sistema de RPG em PDF abaixo.</p>
                 <div style="margin-top: 1rem;">
                     <a href="${projeto.downloadPdf}" download class="modal-link-btn primary" style="background: var(--cor-secondary);"><i class="fas fa-download"></i> Baixar PDF</a>
                 </div>
-            </div>`;
+            </div>`);
     }
+
+    const sectionScreenshots = sectionScreenshotsParts.join('');
 
     modalBody.innerHTML = `
         <div class="modal-body-header">
@@ -332,7 +353,9 @@ function fecharGaleriaModal() {
     document.body.style.overflow = '';
 }
 
-galeriaItems.forEach((item, idx) => {
+document.querySelectorAll('.galeria-item').forEach((item, idx) => {
+    if (item.classList.contains('galeria-video')) return;
+
     const img = item.querySelector('img, svg');
     if (!img) return;
 
