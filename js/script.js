@@ -129,7 +129,7 @@ const projetos = [
         imagem: "assets/projects/oligarcas sem titulo.png",
         screenshots: [],
         pdfs: [
-            { label: "v2.0.0 (Pré-release 17) — Versão mais recente", caminho: "assets/documents/oligarquia-pestilenta-rpg-v2.0.0.pre-17.pdf", destaque: true },
+            { label: "v2.0.0 (Pré-release 18) — Versão mais recente", caminho: "assets/documents/oligarquia-pestilenta-rpg-v2.0.0.pre-18.pdf", destaque: true },
             { label: "Livro do Jogador v1.7.1", caminho: "assets/documents/op-livro-do-jogador-v1.7.1.pdf", destaque: false },
             { label: "v0.10.1 — Versão antiga", caminho: "assets/documents/oligarquia-pestilenta-rpg-v0.10.1.pdf", destaque: false }
         ],
