@@ -121,7 +121,7 @@ const projetos = [
     {
         id: 7,
         nome: "Oligarquia Pestilenta",
-        descricao: "Sistema de RPG de mesa medieval totalmente autoral, em desenvolvimento desde 2022. Contempla mecânicas próprias, classes, raças, equipamentos e cenário detalhado em livro PDF.",
+        descricao: "Sistema de RPG de mesa medieval totalmente autoral, em desenvolvimento desde 2022. Contempla mecânicas próprias, classes, equipamentos e cenário detalhado em livro PDF.",
         resumo: "Sistema autoral de RPG de mesa medieval (desde 2022, em desenvolvimento).",
         tecnologias: ["Autoral", "Diagramação", "Escrita Criativa"],
         linkGithub: "",
