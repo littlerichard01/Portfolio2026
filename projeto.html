@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto | Ricardo Palma Garcia de Campos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-content">
+            <div class="profile-photo">
+                <img src="assets/images/foto.jpg" alt="Foto de perfil de Ricardo Palma Garcia de Campos">
+            </div>
+            <h1 class="profile-name">Ricardo Palma Garcia de Campos</h1>
+            <p class="profile-gender">21 anos</p>
+            <p class="profile-title">Desenvolvedor e Artista</p>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i> Voltar ao Início
+                </a>
+                <a href="index.html#projetos" class="nav-link">
+                    <i class="fas fa-code"></i> Todos os Projetos
+                </a>
+            </nav>
+
+            <div class="social-links">
+                <a href="https://github.com/littlerichard01" target="_blank" rel="noopener noreferrer" title="GitHub" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/ricardo-palma-garcia-de-campos-07b0642b2/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://www.instagram.com/ricardinhodesenhos/" target="_blank" rel="noopener noreferrer" title="Instagram" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/5511993355097" target="_blank" rel="noopener noreferrer" title="WhatsApp" class="social-link">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:ricardopalmacampos@gmail.com" title="Email" class="social-link">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section class="section">
+            <a href="index.html#projetos" class="voltar-link">
+                <i class="fas fa-arrow-left"></i> Voltar para projetos
+            </a>
+            <div id="projetoConteudo">
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2026 Ricardo Palma Garcia de Campos. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+    <div class="modal galeria-modal" id="screenshotLightbox">
+        <div class="modal-overlay" data-screenshot-close></div>
+        <div class="galeria-modal-content">
+            <button class="modal-close" data-screenshot-close>
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="screenshotLightboxImg" src="" alt="Screenshot ampliada do projeto">
+        </div>
+    </div>
+
+    <script src="js/projetos-data.js"></script>
+    <script src="js/projeto.js"></script>
+</body>
+</html>
